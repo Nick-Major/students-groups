@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,9 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Group $group)
     {
-        return view('students.create');
+        return view('students.create', compact('group'));
     }
 
     /**
@@ -29,8 +30,8 @@ class StudentController extends Controller
     public function store(Request $request, Group $group)
     {
         $data = $request->validate([
-            'surname' => 'required|string|max:255'
-            'name' => 'required|string|max:255'
+            'surname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         $group->students()->create($data);
