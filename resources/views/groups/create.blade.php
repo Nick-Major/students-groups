@@ -1,31 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание группы</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
-    <h1>Создание группы</h1>
+@extends('layouts.app')
 
-    <form action="{{ route('groups.store') }}" method="POST">
-        @csrf {{-- защита от CSRF-атак --}}
+@section('content')
+<div class="container mt-4">
+    <h1 class="mb-4">Создание группы</h1>
 
-        <label>Название группы:</label>
-        <input type="text" name="title" required><br><br>
+    <form action="{{ route('groups.store') }}" method="POST" class="mb-4">
+        @csrf
 
-        <label>Дата начала:</label>
-        <input type="date" name="start_from" required><br><br>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Название группы:</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
 
-        <label>Активна ли группа:</label>
-        <select name="is_active" required>
-            <option value="1">Да</option>
-            <option value="0">Нет</option>
-        </select><br><br>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Дата начала:</label>
+            <input type="date" name="start_from" class="form-control" required>
+        </div>
 
-        <button type="submit">Создать</button>
-    </form><br>
-    
-</body>
-</html>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Активна ли группа:</label>
+            <select name="is_active" class="form-select" required>
+                <option value="1">Да</option>
+                <option value="0">Нет</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Создать</button>
+        <a href="{{ route('groups.index') }}" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+@endsection

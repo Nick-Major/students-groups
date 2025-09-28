@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о студенте</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
     <h1>Информация о студенте</h1>
 
-    <p>{{ $student->surname }} {{ $student->name }}</p>
+    <p><strong>{{ $student->surname }} {{ $student->name }}</strong></p>
     <p>Группа: {{ $group->title }}</p><br>
 
-    <a href="{{ route('groups.show', $group) }}">Назад к группе</a>
-</body>
-</html>
+    <a href="{{ route('groups.show', $group) }}" class="btn btn-secondary">Назад к группе</a>
+</div>
+@endsection
